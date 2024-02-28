@@ -1,0 +1,852 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "3c761f82",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Date of Birth                   What is your current profession?  \\\n",
+      "0       9/16/2000  Fresher (I have completed my Education and loo...   \n",
+      "1      02-06-1998  Fresher (I have completed my Education and loo...   \n",
+      "2      10-08-2003  Student (I am currently enrolled in some Educa...   \n",
+      "3      11/29/2001  Student (I am currently enrolled in some Educa...   \n",
+      "4      11/25/2004  Student (I am currently enrolled in some Educa...   \n",
+      "..            ...                                                ...   \n",
+      "995     8/28/1998  Fresher (I have completed my Education and loo...   \n",
+      "996     4/22/2004  Student (I am currently enrolled in some Educa...   \n",
+      "997    06-08-2000  Student (I am currently enrolled in some Educa...   \n",
+      "998    06-03-2003  Student (I am currently enrolled in some Educa...   \n",
+      "999     7/24/2003  Student (I am currently enrolled in some Educa...   \n",
+      "\n",
+      "    What is the year of completion of your Highest Education Qualification?  \\\n",
+      "0                                            7/30/2023                        \n",
+      "1                                            5/18/2022                        \n",
+      "2                                           04-01-2025                        \n",
+      "3                                            5/15/2024                        \n",
+      "4                                           01-10-2026                        \n",
+      "..                                                 ...                        \n",
+      "995                                         11/15/2022                        \n",
+      "996                                          7/23/2026                        \n",
+      "997                                          5/31/2024                        \n",
+      "998                                          5/30/2025                        \n",
+      "999                                          5/25/2025                        \n",
+      "\n",
+      "            Which of the following best describes you?  \\\n",
+      "0    I am currently enrolled in a Data Science cert...   \n",
+      "1    I have never enrolled in any certification cou...   \n",
+      "2    I am currently enrolled in a Data Science cert...   \n",
+      "3    I have never enrolled in any certification cou...   \n",
+      "4    I have completed a Data Science certification ...   \n",
+      "..                                                 ...   \n",
+      "995  I have completed a Data Science certification ...   \n",
+      "996  I am currently enrolled in a Data Science cert...   \n",
+      "997  I have completed a Data Science certification ...   \n",
+      "998  I have never enrolled in any certification cou...   \n",
+      "999  I am currently enrolled in a Data Science cert...   \n",
+      "\n",
+      "    Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  \\\n",
+      "0                             Innomatics Research Labs                                                                                    \n",
+      "1                                                  NaN                                                                                    \n",
+      "2                                                  NaN                                                                                    \n",
+      "3                                                  NaN                                                                                    \n",
+      "4           Velagapudi ramakrishna Siddhartha college                                                                                     \n",
+      "..                                                 ...                                                                                    \n",
+      "995                                            DevTown                                                                                    \n",
+      "996                                     ONLINE COURSE                                                                                     \n",
+      "997                             Chandigarh University                                                                                     \n",
+      "998                                                NaN                                                                                    \n",
+      "999  Birla Institute of Technology and Science, Pil...                                                                                    \n",
+      "\n",
+      "    In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.  \\\n",
+      "0                                                  251                                                               \n",
+      "1                                                  NaN                                                               \n",
+      "2                                                  NaN                                                               \n",
+      "3                                                  NaN                                                               \n",
+      "4                                                   Na                                                               \n",
+      "..                                                 ...                                                               \n",
+      "995                                                NaN                                                               \n",
+      "996                                                NaN                                                               \n",
+      "997                                                NaN                                                               \n",
+      "998                                                NaN                                                               \n",
+      "999                                                NaN                                                               \n",
+      "\n",
+      "    Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.  \\\n",
+      "0                                  6:00 to 7:00 PM IST                                                                                  \n",
+      "1                                  6:00 to 7:00 PM IST                                                                                  \n",
+      "2                                  6:00 to 7:00 PM IST                                                                                  \n",
+      "3                                  5:00 to 6:00 PM IST                                                                                  \n",
+      "4                                  6:00 to 7:00 PM IST                                                                                  \n",
+      "..                                                 ...                                                                                  \n",
+      "995                                6:00 to 7:00 PM IST                                                                                  \n",
+      "996                                6:00 to 7:00 PM IST                                                                                  \n",
+      "997                                6:00 to 7:00 PM IST                                                                                  \n",
+      "998                                6:00 to 7:00 PM IST                                                                                  \n",
+      "999                                6:00 to 7:00 PM IST                                                                                  \n",
+      "\n",
+      "    What do you think are most important skill right now for a skilled Data Scientist?  \n",
+      "0    Extracting actionable insights from the raw da...                                  \n",
+      "1     Extracting actionable insights from the raw data                                  \n",
+      "2                                       Data Modelling                                  \n",
+      "3    Extracting actionable insights from the raw da...                                  \n",
+      "4    Extracting actionable insights from the raw da...                                  \n",
+      "..                                                 ...                                  \n",
+      "995  Extracting actionable insights from the raw da...                                  \n",
+      "996                                               LLMs                                  \n",
+      "997  Extracting actionable insights from the raw da...                                  \n",
+      "998  Extracting actionable insights from the raw da...                                  \n",
+      "999                    LLMs, MLOps, Prompt Engineering                                  \n",
+      "\n",
+      "[1000 rows x 8 columns]\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df=pd.read_csv(\"C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv\")\n",
+    "df1=pd.DataFrame(df)\n",
+    "print(df1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "76d6787a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "  Date of Birth                   What is your current profession?  \\\n",
+      "0     9/16/2000  Fresher (I have completed my Education and loo...   \n",
+      "1    02-06-1998  Fresher (I have completed my Education and loo...   \n",
+      "2    10-08-2003  Student (I am currently enrolled in some Educa...   \n",
+      "3    11/29/2001  Student (I am currently enrolled in some Educa...   \n",
+      "4    11/25/2004  Student (I am currently enrolled in some Educa...   \n",
+      "\n",
+      "  What is the year of completion of your Highest Education Qualification?  \\\n",
+      "0                                          7/30/2023                        \n",
+      "1                                          5/18/2022                        \n",
+      "2                                         04-01-2025                        \n",
+      "3                                          5/15/2024                        \n",
+      "4                                         01-10-2026                        \n",
+      "\n",
+      "          Which of the following best describes you?  \\\n",
+      "0  I am currently enrolled in a Data Science cert...   \n",
+      "1  I have never enrolled in any certification cou...   \n",
+      "2  I am currently enrolled in a Data Science cert...   \n",
+      "3  I have never enrolled in any certification cou...   \n",
+      "4  I have completed a Data Science certification ...   \n",
+      "\n",
+      "  Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  \\\n",
+      "0                           Innomatics Research Labs                                                                                    \n",
+      "1                                                NaN                                                                                    \n",
+      "2                                                NaN                                                                                    \n",
+      "3                                                NaN                                                                                    \n",
+      "4         Velagapudi ramakrishna Siddhartha college                                                                                     \n",
+      "\n",
+      "  In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.  \\\n",
+      "0                                                251                                                               \n",
+      "1                                                NaN                                                               \n",
+      "2                                                NaN                                                               \n",
+      "3                                                NaN                                                               \n",
+      "4                                                 Na                                                               \n",
+      "\n",
+      "  Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.  \\\n",
+      "0                                6:00 to 7:00 PM IST                                                                                  \n",
+      "1                                6:00 to 7:00 PM IST                                                                                  \n",
+      "2                                6:00 to 7:00 PM IST                                                                                  \n",
+      "3                                5:00 to 6:00 PM IST                                                                                  \n",
+      "4                                6:00 to 7:00 PM IST                                                                                  \n",
+      "\n",
+      "  What do you think are most important skill right now for a skilled Data Scientist?  \n",
+      "0  Extracting actionable insights from the raw da...                                  \n",
+      "1   Extracting actionable insights from the raw data                                  \n",
+      "2                                     Data Modelling                                  \n",
+      "3  Extracting actionable insights from the raw da...                                  \n",
+      "4  Extracting actionable insights from the raw da...                                  \n",
+      "Unique values in 'Current Profession' column: ['Fresher (I have completed my Education and looking for a job now)'\n",
+      " 'Student (I am currently enrolled in some Educational Program)'\n",
+      " 'Freelancer (I have completed my Education and working part time or owns a business)'\n",
+      " 'Working Professional (I have completed my Education and working full time)']\n",
+      "Most common profession: Student (I am currently enrolled in some Educational Program)\n",
+      "Certification Institute: ['Innomatics Research Labs' nan\n",
+      " 'Velagapudi ramakrishna Siddhartha college '\n",
+      " 'In NPTEL as well as Coursera IBM Data Science Course I am currently enrolled in.'\n",
+      " 'Innomatics research labs ' 'Coach-Ed'\n",
+      " 'Internship at Innomatics Research Labs'\n",
+      " 'Symbiosis skills and professional University'\n",
+      " 'AISSMS Institute of Information Technology' 'Swayam NPTEL course '\n",
+      " 'Innomatics Research Labs ' 'Innomatics Research Labs\"'\n",
+      " 'Innomatices research labs' 'InnomaticsResearchLabs ' 'Udemy'\n",
+      " 'INNOMATICS RESEARCH LABS' 'Innomatics research labs' 'Scaler Academy '\n",
+      " 'Sri Manakula Vinayagar Engineering College' 'Innomatics Resarch Labs '\n",
+      " 'Innomatics' 'innomatics research labs' 'ExcelR Solutions'\n",
+      " 'Innomatics Research Lab ' 'Na' 'Acmegrade' 'excelR solutions '\n",
+      " 'Mysore University' 'Coursera' 'Top Mentor' 'Skill for all cisco'\n",
+      " 'Innomatics Research labs' 'UDEMY' 'Vikramasimhapuri University'\n",
+      " 'Simplilearn' 'University of Kerala' 'Udemy ' 'COURSERA' 'Coursera '\n",
+      " 'Sreenidhi institute of science and technology '\n",
+      " 'SQUAD Infotech Pvt. Ltd.' 'FunctionUp' 'No'\n",
+      " 'Andhra Pradesh State Skill Development Corporation (APSSDC)'\n",
+      " 'Innomatics Research Labs , JNTU Hyderabad ' 'Chandigarh University '\n",
+      " 'COCSIT ' 'Inomatics research labs ' 'NA ' 'Excelr' 'Yhills'\n",
+      " \"AWS MACHINE LEARNING FOUNDATIONS, deeplearning.ai and stanford's machine learning specialization on coursera\"\n",
+      " 'Pantech solutions, Twilearn ' 'ALMABETTER' 'Innomatics Reasearch Labs'\n",
+      " 'Innomatics Research Labs Hyderabad' 'Internshala Trainings' 'ETlhive '\n",
+      " 'Data Einstein ' ' Coursera, Geeks For Geeks , Udemy.'\n",
+      " 'NPTEL Online course for completed the Data science and engineers certification.'\n",
+      " 'Scaler' 'Simplilearn and Codebasics' 'Innomatics Research labs '\n",
+      " 'TechnoHacks EduTech Private limited ' 'Internshala' 'IIT madras'\n",
+      " 'Offline coaching centre ' 'AlmaBetter '\n",
+      " 'Google Data Analytics Certification, IBM Data Science Certification'\n",
+      " 'Institute of aeronautical engineering'\n",
+      " 'Tamilnadu Skill Development of Corporation' 'Pantech University'\n",
+      " 'almabetter,British Airways Data science virtual internship'\n",
+      " 'innomatics Research labs, Hyderabad'\n",
+      " 'Innomatics Research Labs, Hyderabad ' 'Innomatics Research lab'\n",
+      " 'CodeBasics Online Platform ' 'skill for all Cisco'\n",
+      " 'Excelr solutions Pune' 'Digipodium ' '365 Careers'\n",
+      " 'Cisco networking academy ' 'Innometics Research Labs'\n",
+      " 'Indian Institute of Technology Madras' '1stop'\n",
+      " \"Innomatics Research Lab's\" 'Freecodecamp' 'INNOVATIVE RESEARCH LAB'\n",
+      " 'Bharat Intern' 'Innomatics research lab' 'Stanford University'\n",
+      " 'coursera ' 'HDLC Technologies ' 'Bharati Vidyapeeth University '\n",
+      " 'Innomatics research Labs' 'Jobaaj Learnings'\n",
+      " 'Lovely Professional University '\n",
+      " 'Kaggle Online Course , Coursera Online Course,IBM Course'\n",
+      " 'Kristu jayanti college ' 'Innomatics ' 'ITvedant Education Institute'\n",
+      " 'INNOMATICS' 'Learnbay institute ' 'DataCamp'\n",
+      " 'Stanford University Online ' 'Simplilearn platform '\n",
+      " 'GUVI -IIT Madras Research Park' 'EdYoda Digital Institute'\n",
+      " 'St Clair College ' 'The correlation' 'Informatics research lab'\n",
+      " 'Innomatics Reasearch labs' 'SR University' 'Coding Ninjas ' 'na'\n",
+      " 'Excelr Solutions' 'Charotar University of Science and Technology'\n",
+      " 'Innomatics Research Labs.' 'Squad Infotech' 'IBM ' 'Scaler ' 'Upgrad '\n",
+      " 'I am doing geeks for geeks course' 'MIT ADT University' 'Linkedin'\n",
+      " 'Bishop Heber College ' 'Shiv Nadar University Chennai '\n",
+      " 'NA(self learning) '\n",
+      " 'IIITDM(Indian Institute of Information and Technology ,Design and Manufacturing) Kancheepuram'\n",
+      " 'Ganpat University ' 'Department of technology (pune university)'\n",
+      " 'Explore Academy' 'NPTEL' 'Ramniranjan Jhunjhunwala College Mumbai '\n",
+      " 'iNeuron.ai (Full Stack Data Science)' 'Top mentor' '360digitmg'\n",
+      " \"Vidya Pratishthan's Kamalnayan Bajaj Institute of Engineering and Technology\"\n",
+      " 'International Institute of Information Technology'\n",
+      " 'Vaagdevi college of engineering '\n",
+      " 'Forks coding school, Innomatics Research lab'\n",
+      " 'Hagital Consult Nigeria and IBM Data Science Professional Certificate Course (Coursera)'\n",
+      " 'Guvi - IITM' '365 Data Science' 'Intershala '\n",
+      " 'Innomatics Research Lab, Hyderabad' 'INeuron' 'Pwskills '\n",
+      " 'College of Engineering Pune' 'Graphic era university '\n",
+      " 'Coursera Platform' 'KWS college of Sangli ' 'INNOMATICS RESEARCH LAB '\n",
+      " 'Jansons Institute of Technology ' 'Coursera Data Science course by IBM'\n",
+      " 'DA innomatics' 'Innomatices' 'Google Data analytics certification '\n",
+      " 'IBM' 'GITAM University, Visakhapatnam ' 'Pantech' 'Courseera'\n",
+      " 'PW skills ' 'Gnanamani College of Technology ' 'Evarcity'\n",
+      " 'Internstudio , Microsoft Learning' 'Indira institute of Education'\n",
+      " 'Squad Infotech Pvt.ltd' 'Pwskills' 'Internship studio' 'N/a' 'IANT'\n",
+      " 'HyperionDev' 'Great Learning ' 'Learnwick Solutions '\n",
+      " 'Centre for Development of Advanced Computing Mumbai '\n",
+      " 'Innomatics research labs, jntu' 'Physics wallah ' 'Nucot in Bangalore'\n",
+      " 'Royal Technosoft pvt Ltd ' 'Innomatics Reasearch Labs ' 'ExcelR'\n",
+      " 'Learnbay' 'Coursera IBM Data Science COurse'\n",
+      " 'ExcelR Institude Baner Pune' 'Geek For Geeks Course' 'Applied Roots'\n",
+      " 'INTELLIPAT and IIT Roorkee'\n",
+      " 'From my college I have a subject data science, and also registered with Cisco learnings '\n",
+      " 'PW Skills' 'Tkr college of engineering and technology'\n",
+      " 'innomatics research lab' 'Online course (physics Wallah)'\n",
+      " 'Innomatics Resreach lab' 'Quality Thoughts'\n",
+      " 'Coursers deep learning by Andrew Ng' 'Squad Infotech ' 'N'\n",
+      " 'Hamoye and Binance Charity'\n",
+      " 'IBM SkillsBuild and CSRBOX academic Internship for Data Analytics!'\n",
+      " 'Pw skills' 'Freecodecamp online lessons' 'Innomatics Research  Labs'\n",
+      " 'IIT Roorkee ' 'Skill Academy by Testbook' 'Cognitive Class'\n",
+      " 'IPCS GLOBAL CALICUT '\n",
+      " 'Rajiv Gandhi Proudyogiki Vishwavidyalaya, Udacity' 'AlmaBetter'\n",
+      " 'Academor ' 'PYTHON FOR DATA SCIENCE AND AI BY IBM' 'Letsupgrade '\n",
+      " 'Jain University and FingerTips collaboration '\n",
+      " 'ALIGARH MUSLIM UNIVERSITY' 'IIT-M and Intellipaat'\n",
+      " 'Department of Futures Studies, University of Kerala' 'Physics Wallah'\n",
+      " 'TCSiON Industry Honored Course' 'Squad Institute '\n",
+      " 'innomatics reseach labs' 'Almabetter ' 'Internshala trainings'\n",
+      " 'Simplelearn' 'Indian Institute of Technology, Mandi'\n",
+      " 'Deep Learning.ai and Campus X' 'INNOMATICS RESEARCH LABS ' 'Udacity'\n",
+      " 'Udemy and PW Skills' 'Learned mostly from Youtube'\n",
+      " 'Almabetter Institute ' 'Udemy Zero To Mastery Academy'\n",
+      " 'Innomatis Research Labs' 'Linux World Informatic Practices' 'prepinsta'\n",
+      " 'Innomatics Research Lab , Hyderabad' 'University of Kerala '\n",
+      " 'Innomatics Research Lab' 'Coursera Certification '\n",
+      " 'innomatics research labs '\n",
+      " 'Kg reddy college of engineering and technology' 'Ybi Foundation'\n",
+      " 'Jansons Institute of Technology' 'coursera & scaler'\n",
+      " 'Central University of Rajasthan' 'GOOGLE' 'Aligarh Muslim University '\n",
+      " 'Prepinsta' 'Jobaaj Data Science 5 day free course.'\n",
+      " 'Odin school  hyderbad ' 'Indian Institute of Technology Kharagpur '\n",
+      " 'Udemy courses and youtube' 'Bishop Heber College (as Degree)'\n",
+      " 'sathya technologiies'\n",
+      " '1. Udemy - Completed  2. Great Learning - Completed' 'TEACHNOOK'\n",
+      " 'Infosys springboard '\n",
+      " \"i have done data science virtualship internship and it's completed and also I did an data science certificate from IBM\"\n",
+      " 'Analytics Vidhya' 'NareshIT' 'IBM at COURSERA' '360DIGITMG' 'Degree'\n",
+      " 'Udemy and coursera' '360DigitMG'\n",
+      " 'Devi Ahilya Vishwavidyalay, Indore, India' 'Upskill Campus' 'Ibm'\n",
+      " 'Infinite Graphics Teachnology, Pune' 'Infosys Springboard '\n",
+      " 'Cognitiveclass.ai' 'Entrance exam certificate got' 'PrepInsta Prime'\n",
+      " 'Swayam NPTL' 'Datamites, bangalore' 'Jain (Deemed-to-be-University)'\n",
+      " 'Applied AI Course' 'Teks Academy' 'LEARNBAY' 'VERZEO'\n",
+      " 'Iam taking personally by one of the professor '\n",
+      " 'Sona College of Technology & Google ' 'DAVV ' 'PanTech E learning '\n",
+      " 'PES Modern College of Engineering Pune ' 'Ducat,Noida sec-16' 'TCS'\n",
+      " 'python programming and artificial intelligence , pantech e learning'\n",
+      " \"Simplilearn data science ( ongoing master's in AI engineer course)\"\n",
+      " 'St.Martins Engineering College ' 'Great learning' 'Uncodemy'\n",
+      " 'Department of Futures Studies ' 'HarvardX '\n",
+      " 'Cyberaegis IT Solutions Pvt Ltd' 'NCVET' 'YBI Foundation'\n",
+      " 'M.Sc Data science ' 'Innomatics research lab Hyderabad '\n",
+      " 'Seed Infotech ' 'Gana Tech Solutions ' 'Guvi' 'Innomatic Reaserch Lab'\n",
+      " 'KGiSL Institute of technology'\n",
+      " 'Btech Artificial intelligence and data science @ Dhanalakshmi Srinivasan Engineering College Perambalur '\n",
+      " 'udemy' 'NPTEL, freeCodeCamp.org, CS50, Coursera' 'Amity University'\n",
+      " 'School of Data Science and Business Intellegence (SDBI), University of Mumbai'\n",
+      " 'World Quant Univeristy' 'INNOMATICS RESEARCH LAB'\n",
+      " 'Function Up School of Technology '\n",
+      " 'IBM Data Science Professional Certificate Course'\n",
+      " 'G H Raisoni collage of engineering and management, Whagoli '\n",
+      " 'Google Advanced Data analytics and Inmakes infotech internship'\n",
+      " 'IIT GUWAHATI, EDUREKA '\n",
+      " 'Madanapalle Institute of Technology and Science'\n",
+      " 'MIT World Peace University' 'Datamites' 'Paavai engineering college '\n",
+      " 'Innomatics Research Labs, Hyderabad' 'WorldQuant University'\n",
+      " 'Data Science for Engineers, Swayam(NTPEL)' 'Codingrad, ExcelR'\n",
+      " 'PGD in Pune University ' 'Udemy , great learning ' 'Learn AI'\n",
+      " 'Geeks for Geeks' 'Quality Thoughts Infosystems, Velachery, Chennai '\n",
+      " 'Simplilearn ,India.' 'Innomatics Research Labs,Hayderabad'\n",
+      " 'The Cooperative university of Kenya ' 'Free code camp'\n",
+      " 'Innomatics research labs Hyderabad ' 'IIIT-Bangalore'\n",
+      " 'LinkedIn, Coursera ' 'CodeClause' 'ISBR BUSINESS SCHOOL' 'In'\n",
+      " ' Innomatics Research Labs' 'ineuron'\n",
+      " 'Sharad Institute of Technology College of engineering '\n",
+      " \"Ducat's institute \" 'Brainovision' 'Internshala '\n",
+      " 'Amrita school of engineering ' 'Anits '\n",
+      " 'Infinity graphics technology, Pune ' 'Digital nest, Udemy '\n",
+      " 'African Leadership X(ALX)' 'msc data scince'\n",
+      " 'Lagos School of programming ' 'University of Roehampton, United Kingdom'\n",
+      " 'Livewire Livetech Skills ' 'Naresh IT ' 'Coursera(Stanford), MyCaptain'\n",
+      " 'Learnbay ' 'IIIT bangalore' 'SCALER' 'INNOMATICS REASEARCH LABS'\n",
+      " 'DataMites' 'Coursera, Google certification' 'Govt ANMT School Anantnag'\n",
+      " 'DevTown' 'ONLINE COURSE '\n",
+      " 'Birla Institute of Technology and Science, Pilani ']\n",
+      "Innomatics Batch Number: ['251' 'AI Elight 13 ( 242 )' '261' '188' '256' '186' '218' '242' '237'\n",
+      " '223' '235' '210' '225' '81011000223' '247' '230' '232'\n",
+      " '249, ai-elite-16' '207' '234' '264' '202' '254' '249' '244' '257' '241'\n",
+      " '250' '240' '246' 'Na' 'ai-elite14' '191' '227' '238'\n",
+      " '81010808823/Ai Elite16' 'Ai-elite 13 ' '192' '123' '199' '217' '208'\n",
+      " '236' 'ds_intern_23' '243' '211' '259' '177' 'AI Elite 13' '229' '228'\n",
+      " '252' '204-205' '231' '190' 'ai_elite-13' nan 'AI -Elite _13' '193' '213'\n",
+      " '251_252' '239G ' 'AI-Elite-11' ' Alite- 13' '204_205' '255' '200' '233'\n",
+      " '81020802723    -    251  batch ']\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "print(df.head())\n",
+    "current_profession_values = df['What is your current profession?'].unique()\n",
+    "print(\"Unique values in 'Current Profession' column:\", current_profession_values)\n",
+    "most_common_profession = df['What is your current profession?'].value_counts().idxmax()\n",
+    "print(\"Most common profession:\", most_common_profession)\n",
+    "certification_institute = df['Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.'].unique()\n",
+    "print(\"Certification Institute:\", certification_institute)\n",
+    "innomatics_batch_number = df[df['Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.'] == 'Innomatics Research Labs']['In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.'].unique()\n",
+    "print(\"Innomatics Batch Number:\", innomatics_batch_number)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "92ffa8e8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The number of interns enrolled or completed their data science professional courses is: 0\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "completion_status_column = 'Which of the following best describes you?'\n",
+    "enrolled_or_completed_df = df[df[completion_status_column].isin(['Enrolled'])]\n",
+    "num_interns_enrolled_or_completed = len(enrolled_or_completed_df)\n",
+    "print(f\"The number of interns enrolled or completed their data science professional courses is: {num_interns_enrolled_or_completed}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "c64c32e9",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The number of interns who have either enrolled or completed their data science courses is: 0\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "enrolled_or_completed_df = df[df['What is your current profession?'] == 'Intern']\n",
+    "num_interns_enrolled_or_completed = len(enrolled_or_completed_df)\n",
+    "print(f\"The number of interns who have either enrolled or completed their data science courses is: {num_interns_enrolled_or_completed}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "06ccd48c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The number of interns who selected 'Prompt Engineering' as the most important skill is: 7\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "prompt_engineering_count = df[df['What do you think are most important skill right now for a skilled Data Scientist?'] == 'Prompt Engineering'].shape[0]\n",
+    "\n",
+    "print(f\"The number of interns who selected 'Prompt Engineering' as the most important skill is: {prompt_engineering_count}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "730f0449",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The minimum age of an intern at Innomatics Research Labs is: nan years\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "from datetime import datetime\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "df['Date of Birth'] = pd.to_datetime(df['Date of Birth'])\n",
+    "innomatics_df = df[df['What is your current profession?'] == 'Intern']\n",
+    "current_date = datetime.now()\n",
+    "innomatics_df['Age'] = (current_date - innomatics_df['Date of Birth']).astype('<m8[Y]')\n",
+    "min_age_at_innomatics = innomatics_df['Age'].min()\n",
+    "\n",
+    "print(f\"The minimum age of an intern at Innomatics Research Labs is: {min_age_at_innomatics} years\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "eb9cbd38",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The number of interns born on a Sunday is: 125\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "df['Date of Birth'] = pd.to_datetime(df['Date of Birth'])\n",
+    "sunday_born_df = df[df['Date of Birth'].dt.day_name() == 'Sunday']\n",
+    "num_sunday_born_interns = len(sunday_born_df)\n",
+    "\n",
+    "print(f\"The number of interns born on a Sunday is: {num_sunday_born_interns}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "717c98ea",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The majority of interns are born in the month of: July\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "df['Date of Birth'] = pd.to_datetime(df['Date of Birth'])\n",
+    "df['Birth Month'] = df['Date of Birth'].dt.month_name()\n",
+    "most_common_birth_month = df['Birth Month'].mode().iloc[0]\n",
+    "\n",
+    "print(f\"The majority of interns are born in the month of: {most_common_birth_month}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "f50ee47b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The number of interns who didn't mention the data science institute is: 322\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "column_name ='Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.'\n",
+    "no_institute_mention_df = df[df[column_name].isnull()]\n",
+    "num_interns_no_institute_mention = len(no_institute_mention_df)\n",
+    "\n",
+    "print(f\"The number of interns who didn't mention the data science institute is: {num_interns_no_institute_mention}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "2cc48fc2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The number of interns who mentioned Innomatics as their data science institute is: 9\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "column_name ='Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.'\n",
+    "innomatics_mention_df = df[df[column_name] == 'Innomatics']\n",
+    "num_interns_innomatics_mention = len(innomatics_mention_df)\n",
+    "\n",
+    "print(f\"The number of interns who mentioned Innomatics as their data science institute is: {num_interns_innomatics_mention}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "f55ff93c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number of missing values in 'Date of Birth': 0\n",
+      "Info about the DataFrame after filtering for working professionals:\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "Int64Index: 0 entries\n",
+      "Data columns (total 8 columns):\n",
+      " #   Column                                                                                                                               Non-Null Count  Dtype         \n",
+      "---  ------                                                                                                                               --------------  -----         \n",
+      " 0   Date of Birth                                                                                                                        0 non-null      datetime64[ns]\n",
+      " 1   What is your current profession?                                                                                                     0 non-null      object        \n",
+      " 2   What is the year of completion of your Highest Education Qualification?                                                              0 non-null      object        \n",
+      " 3   Which of the following best describes you?                                                                                           0 non-null      object        \n",
+      " 4   Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  0 non-null      object        \n",
+      " 5   In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.                       0 non-null      object        \n",
+      " 6   Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.    0 non-null      object        \n",
+      " 7   What do you think are most important skill right now for a skilled Data Scientist?                                                   0 non-null      object        \n",
+      "dtypes: datetime64[ns](1), object(7)\n",
+      "memory usage: 0.0+ bytes\n",
+      "None\n",
+      "The median age of a working professional is: nan years\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "from datetime import datetime\n",
+    "df = pd.read_csv('C:\\\\Users\\\\pavan\\\\Downloads\\\\raw_data_v11_3.csv')\n",
+    "df['Date of Birth'] = pd.to_datetime(df['Date of Birth'], errors='coerce')\n",
+    "print(\"Number of missing values in 'Date of Birth':\", df['Date of Birth'].isnull().sum())\n",
+    "df = df.dropna(subset=['Date of Birth'])\n",
+    "working_professionals_df = df[df['What is your current profession?'] == 'Working Profession']\n",
+    "print(\"Info about the DataFrame after filtering for working professionals:\")\n",
+    "print(working_professionals_df.info())\n",
+    "current_date = datetime.now()\n",
+    "working_professionals_df['Age'] = (current_date - working_professionals_df['Date of Birth']).astype('<m8[Y]')\n",
+    "median_age_working_professionals = working_professionals_df['Age'].median()\n",
+    "\n",
+    "print(f\"The median age of a working professional is: {median_age_working_professionals} years\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "3a5efff6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Info about the DataFrame after filtering for working professionals:\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "Int64Index: 0 entries\n",
+      "Data columns (total 8 columns):\n",
+      " #   Column                                                                                                                               Non-Null Count  Dtype         \n",
+      "---  ------                                                                                                                               --------------  -----         \n",
+      " 0   Date of Birth                                                                                                                        0 non-null      datetime64[ns]\n",
+      " 1   What is your current profession?                                                                                                     0 non-null      object        \n",
+      " 2   What is the year of completion of your Highest Education Qualification?                                                              0 non-null      object        \n",
+      " 3   Which of the following best describes you?                                                                                           0 non-null      object        \n",
+      " 4   Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  0 non-null      object        \n",
+      " 5   In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.                       0 non-null      object        \n",
+      " 6   Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.    0 non-null      object        \n",
+      " 7   What do you think are most important skill right now for a skilled Data Scientist?                                                   0 non-null      object        \n",
+      "dtypes: datetime64[ns](1), object(7)\n",
+      "memory usage: 0.0+ bytes\n",
+      "None\n",
+      "Sample rows of the DataFrame after filtering:\n",
+      "Empty DataFrame\n",
+      "Columns: [Date of Birth, What is your current profession?, What is the year of completion of your Highest Education Qualification?, Which of the following best describes you?, Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course., In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number., Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship., What do you think are most important skill right now for a skilled Data Scientist?]\n",
+      "Index: []\n"
+     ]
+    }
+   ],
+   "source": [
+    "working_professionals_df = df[df['What is your current profession?'] == 'Working Profession']\n",
+    "print(\"Info about the DataFrame after filtering for working professionals:\")\n",
+    "print(working_professionals_df.info())\n",
+    "print(\"Sample rows of the DataFrame after filtering:\")\n",
+    "print(working_professionals_df.head())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "1f8e3caa",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Unique values in 'What is your current profession?': ['Fresher (I have completed my Education and looking for a job now)'\n",
+      " 'Student (I am currently enrolled in some Educational Program)'\n",
+      " 'Freelancer (I have completed my Education and working part time or owns a business)'\n",
+      " 'Working Professional (I have completed my Education and working full time)']\n",
+      "Sample rows of the DataFrame:\n",
+      "  Date of Birth                   What is your current profession?  \\\n",
+      "0    2000-09-16  Fresher (I have completed my Education and loo...   \n",
+      "1    1998-02-06  Fresher (I have completed my Education and loo...   \n",
+      "2    2003-10-08  Student (I am currently enrolled in some Educa...   \n",
+      "3    2001-11-29  Student (I am currently enrolled in some Educa...   \n",
+      "4    2004-11-25  Student (I am currently enrolled in some Educa...   \n",
+      "\n",
+      "  What is the year of completion of your Highest Education Qualification?  \\\n",
+      "0                                          7/30/2023                        \n",
+      "1                                          5/18/2022                        \n",
+      "2                                         04-01-2025                        \n",
+      "3                                          5/15/2024                        \n",
+      "4                                         01-10-2026                        \n",
+      "\n",
+      "          Which of the following best describes you?  \\\n",
+      "0  I am currently enrolled in a Data Science cert...   \n",
+      "1  I have never enrolled in any certification cou...   \n",
+      "2  I am currently enrolled in a Data Science cert...   \n",
+      "3  I have never enrolled in any certification cou...   \n",
+      "4  I have completed a Data Science certification ...   \n",
+      "\n",
+      "  Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  \\\n",
+      "0                           Innomatics Research Labs                                                                                    \n",
+      "1                                                NaN                                                                                    \n",
+      "2                                                NaN                                                                                    \n",
+      "3                                                NaN                                                                                    \n",
+      "4         Velagapudi ramakrishna Siddhartha college                                                                                     \n",
+      "\n",
+      "  In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.  \\\n",
+      "0                                                251                                                               \n",
+      "1                                                NaN                                                               \n",
+      "2                                                NaN                                                               \n",
+      "3                                                NaN                                                               \n",
+      "4                                                 Na                                                               \n",
+      "\n",
+      "  Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.  \\\n",
+      "0                                6:00 to 7:00 PM IST                                                                                  \n",
+      "1                                6:00 to 7:00 PM IST                                                                                  \n",
+      "2                                6:00 to 7:00 PM IST                                                                                  \n",
+      "3                                5:00 to 6:00 PM IST                                                                                  \n",
+      "4                                6:00 to 7:00 PM IST                                                                                  \n",
+      "\n",
+      "  What do you think are most important skill right now for a skilled Data Scientist?  \n",
+      "0  Extracting actionable insights from the raw da...                                  \n",
+      "1   Extracting actionable insights from the raw data                                  \n",
+      "2                                     Data Modelling                                  \n",
+      "3  Extracting actionable insights from the raw da...                                  \n",
+      "4  Extracting actionable insights from the raw da...                                  \n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Unique values in 'What is your current profession?':\", df['What is your current profession?'].unique())\n",
+    "print(\"Sample rows of the DataFrame:\")\n",
+    "print(df.head())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "55a352c8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Info about the DataFrame after filtering for working professionals:\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "Int64Index: 62 entries, 62 to 992\n",
+      "Data columns (total 8 columns):\n",
+      " #   Column                                                                                                                               Non-Null Count  Dtype         \n",
+      "---  ------                                                                                                                               --------------  -----         \n",
+      " 0   Date of Birth                                                                                                                        62 non-null     datetime64[ns]\n",
+      " 1   What is your current profession?                                                                                                     62 non-null     object        \n",
+      " 2   What is the year of completion of your Highest Education Qualification?                                                              62 non-null     object        \n",
+      " 3   Which of the following best describes you?                                                                                           62 non-null     object        \n",
+      " 4   Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  50 non-null     object        \n",
+      " 5   In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.                       30 non-null     object        \n",
+      " 6   Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.    62 non-null     object        \n",
+      " 7   What do you think are most important skill right now for a skilled Data Scientist?                                                   62 non-null     object        \n",
+      "dtypes: datetime64[ns](1), object(7)\n",
+      "memory usage: 4.4+ KB\n",
+      "None\n",
+      "The median age of a working professional is: 26.0 years\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\pavan\\AppData\\Local\\Temp/ipykernel_11684/3310053963.py:10: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame.\n",
+      "Try using .loc[row_indexer,col_indexer] = value instead\n",
+      "\n",
+      "See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  working_professionals_df['Age'] = (current_date - working_professionals_df['Date of Birth']).astype('<m8[Y]')\n"
+     ]
+    }
+   ],
+   "source": [
+    "working_professionals_df = df[df['What is your current profession?'].str.contains('Working Professional')]\n",
+    "print(\"Info about the DataFrame after filtering for working professionals:\")\n",
+    "print(working_professionals_df.info())\n",
+    "current_date = datetime.now()\n",
+    "working_professionals_df['Age'] = (current_date - working_professionals_df['Date of Birth']).astype('<m8[Y]')\n",
+    "median_age_working_professionals = working_professionals_df['Age'].median()\n",
+    "\n",
+    "print(f\"The median age of a working professional is: {median_age_working_professionals} years\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "47b81dd9",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Info about the DataFrame after filtering for freelancers:\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "Int64Index: 26 entries, 37 to 994\n",
+      "Data columns (total 9 columns):\n",
+      " #   Column                                                                                                                               Non-Null Count  Dtype         \n",
+      "---  ------                                                                                                                               --------------  -----         \n",
+      " 0   Date of Birth                                                                                                                        26 non-null     datetime64[ns]\n",
+      " 1   What is your current profession?                                                                                                     26 non-null     object        \n",
+      " 2   What is the year of completion of your Highest Education Qualification?                                                              26 non-null     object        \n",
+      " 3   Which of the following best describes you?                                                                                           26 non-null     object        \n",
+      " 4   Please mention the name of the institute where you have completed or are currently pursuing your Data Science Certification Course.  22 non-null     object        \n",
+      " 5   In case your certification institute is \"Innomatics Research Labs\", please provide your Enrolled Batch Number.                       15 non-null     object        \n",
+      " 6   Please indicate the time that suits you for your daily LIVE interaction with our Chief Data Scientist as part of your internship.    26 non-null     object        \n",
+      " 7   What do you think are most important skill right now for a skilled Data Scientist?                                                   26 non-null     object        \n",
+      " 8   Age                                                                                                                                  26 non-null     float64       \n",
+      "dtypes: datetime64[ns](1), float64(1), object(7)\n",
+      "memory usage: 2.0+ KB\n",
+      "None\n",
+      "The maximum age of a freelancer is: 43.0 years\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\pavan\\AppData\\Local\\Temp/ipykernel_11684/2753499895.py:2: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame.\n",
+      "Try using .loc[row_indexer,col_indexer] = value instead\n",
+      "\n",
+      "See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  freelancer_df['Age'] = (datetime.now() - freelancer_df['Date of Birth']).astype('<m8[Y]')\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "freelancer_df['Age'] = (datetime.now() - freelancer_df['Date of Birth']).astype('<m8[Y]')\n",
+    "print(\"Info about the DataFrame after filtering for freelancers:\")\n",
+    "print(freelancer_df.info())\n",
+    "max_age_freelancer = freelancer_df['Age'].max()\n",
+    "print(f\"The maximum age of a freelancer is: {max_age_freelancer} years\")\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
